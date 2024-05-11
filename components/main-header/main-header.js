@@ -3,9 +3,13 @@ import logoImg from '@/assets/logo.png';
 import styles from './meain-header.module.css';
 import Image from "next/image";
 import MainHeaderBackground from "@/components/main-header/main-header-background";
+import NavLink from "@/components/main-header/nav-link";
+
 
 export default function MainHeader() {
-    return (<>
+
+    return (
+        <>
             <MainHeaderBackground/>
             <header className={styles.header}>
                 <Link href='/public' className={styles.logo}>
@@ -16,10 +20,10 @@ export default function MainHeader() {
                 <nav className={styles.nav}>
                     <ul>
                         <li>
-                            <Link href='/meals'>Browse Meals</Link>
+                            <NavLink href='/meals'>Browse Meals</NavLink>
                         </li>
                         <li>
-                            <Link href='/community'>Foodies Community</Link>
+                            <NavLink href='/community'>Foodies Community</NavLink>
                         </li>
                     </ul>
                 </nav>
