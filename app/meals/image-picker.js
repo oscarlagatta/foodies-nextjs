@@ -2,16 +2,15 @@
 
 import styles from './image-picker.module.css';
 import {useRef, useState} from "react";
+import Image from "next/image";
 
 export default function ImagePicker({label, name}) {
-    const [pickedImage, setPickedImage] = useState()
+    const [pickedImage, setPickedImage] = useState();
 
     const imageInput = useRef();
 
     function handlePick() {
-
         imageInput.current.click();
-
     }
 
     function handleImageChange(event) {
@@ -42,7 +41,6 @@ export default function ImagePicker({label, name}) {
 
     }
 
-
     return (
         <div className={styles.picker}>
             <label htmlFor={name}>{label}</label>
@@ -50,16 +48,16 @@ export default function ImagePicker({label, name}) {
 
                 <div className={styles.preview}>
                     {!pickedImage && <p>No image picked yet.</p>}
-                    {pickedImage && <Image src={pickedImage} alt='The image selected by the user'/>}
+                    {pickedImage && <Image src={pickedImage} alt='The image selected by the user' fill/>}
                 </div>
                 <input
                     ref={imageInput}
                     type="file"
                     id={name}
                     className={styles.input}
-                    accept='image/png, image/jpeg' name={name}
+                    accept='image/png, image/jpeg'
+                    name={name}
                     onChange={handleImageChange}
-                    required
                 />
             </div>
 
