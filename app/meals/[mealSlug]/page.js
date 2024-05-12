@@ -1,7 +1,19 @@
 import styles from './page.module.css'
-import Image from "next/image";
 import {getMeal} from "@/lib/meals";
 import {notFound} from "next/navigation";
+import Image from "next/image";
+
+export async function generateMetadata({params}) {
+    const meal = getMeal(params.mealSlug);
+    if (!meal) {
+        notFound();
+    }
+    return {
+        title: meal.title,
+        description: meal.summary,
+    }
+}
+
 export default function  MealsDetailPage({params}) {
 
     const meal = getMeal(params.mealSlug);
@@ -15,7 +27,7 @@ export default function  MealsDetailPage({params}) {
         <>
             <header className={styles.header}>
                 <div className={styles.image}>
-                    {/*<Image src={meal.image} alt={meal.title} fill />*/}
+                    <Image src={meal.image} alt={meal.title} fill />
                 </div>
                 <div className={styles.headerText}>
                     <h1>{meal.title}</h1>
